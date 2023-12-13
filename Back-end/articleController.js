@@ -31,10 +31,7 @@ export const getArticleById = async(req,res,next) =>{
 export const AddArticle = async(req,res,next) =>{
     const img = req.file?.path
     try{
-        if(!req.body || !img){
-            return res.status(500).json({message:'please enter all fields'});
-        }
-        const article = await Article.create({...req.body,img});
+        const article = await Article.create({...req.body,img:img});
         res.status(200).json({article});
     }catch(err){
         console.log(err);
